@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.howard.edu.lsp.assignment4.implementation;
+package org.howard.edu.lsp.assignment6.integerset;
 
 /**
  * @author greerjackson
@@ -12,7 +12,7 @@ package org.howard.edu.lsp.assignment4.implementation;
 
 
 import java.util.*;
-import org.howard.edu.lsp.assignment4.implementation.IntegerSetException.*;
+import org.howard.edu.lsp.assignment6.integerset.IntegerSetException.*;
 
 
 public class IntegerSet {
@@ -64,8 +64,8 @@ public class IntegerSet {
 		
 		ArrayList<Integer> temp2 = list2;
 		
-//		Collections.sort(temp1);
-//		Collections.sort(temp2);
+		Collections.sort(temp1);
+		Collections.sort(temp2);
 		
 		
 		for (int i=0; i <temp1.size(); i++) {
@@ -232,6 +232,8 @@ public class IntegerSet {
 		IntegerSet list4 = new IntegerSet(list3);
 		
 		return list4;
+
+	
 		
 	}
 	

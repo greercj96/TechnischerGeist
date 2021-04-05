@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.howard.edu.lsp.assignment4.implementation;
+package org.howard.edu.lsp.assignment6.integerset;
 
 /**
  * @author greerjackson
@@ -14,6 +14,6 @@ public class IntegerSetException extends Exception{
 	 * @param message will specify a message to be called when the error is thrown 
 	 */
 	public IntegerSetException(String message) {
-		super("The set is empty");
+		super(message);
 	}
 }

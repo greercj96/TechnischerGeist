@@ -106,20 +106,20 @@ public class IntegerSetTest {
 		set3.add(16);
 		set3.add(14);
 		
-		assertEquals(set1.equals(set3), true);
+		assertTrue(set1.equals(set3) == true);
 //		
 //		//Test 3 - sets are equal because both are empty after being cleared 
 //		
 		set1.clear();
 		set2.clear();
 		
-		assertEquals(set1.equals(set2), true);
+		assertTrue(set1.equals(set2) == true);
 //		
 //		//Test 4 - sets are not equal 
 //		
 		set3.remove(14);
 		
-		assertEquals(set1.equals(set3), false);
+		assertTrue(set1.equals(set3) == false);
 		
 	}
 
@@ -232,16 +232,17 @@ public class IntegerSetTest {
 		ArrayList<Integer> list1 = new ArrayList<>();
 		IntegerSet set1 = new IntegerSet (list1);
 		
-		//Test 1 - set1 contains 1 is true because 1 was successfully added 
+		//Test 1 - set1 contains 1 and 2 is true because 1 and 2 were successfully added 
 		set1.add(1);
 		set1.add(2);
 		assertTrue(set1.contains(1));
+		assertTrue(set1.contains(2));
 
 		//Test 2 - the contents of set1 will still be 1,2 because 2 has already been added; therefore this add will be ignored
 	
 		set1.add(2);
 
-		assertEquals(set1.toString(), "Set elements: " + set1.getlist() + "\n");
+		assertEquals(set1.toString(), "Set elements: [1, 2]\n");
 	}
 
 	@Test
@@ -254,15 +255,27 @@ public class IntegerSetTest {
 		set1.add(1);
 		set1.add(2);
 		
-		//Test 1 - set 1 length equals 1 because 2 has been removed
+		//Test 1 - set 1 length equals 1 because 2 has been removed successfully 
 		set1.remove(2);
 		assertTrue(set1.length() == 1);
 		
 		
-		//Test 2 - set 1 length equals 0 because 1 has been removed
+		//Test 2 - set 1 length equals 0 because 1 has been removed successfully
 		set1.remove(1);
 		
 		assertTrue(set1.length() == 0);
+		
+		
+		
+		set1.add(12);
+		set1.add(13);
+		set1.add(14);
+		
+		set1.remove(14);
+		
+		//Test 3 - set 1 toString returns 12,13 because 14 has been removed successfully
+		assertEquals(set1.toString(), "Set elements: [12, 13]\n");
+		
 		
 
 		
@@ -273,86 +286,92 @@ public class IntegerSetTest {
 	@DisplayName("Test cases for Union")
 	void testUnion() {
 		
-		
 		ArrayList<Integer> list1 = new ArrayList<>();
 		ArrayList<Integer> list2 = new ArrayList<>();
-		ArrayList<Integer> list3 = new ArrayList<>();
-		ArrayList<Integer> list4 = new ArrayList<>();
 		
-		IntegerSet set1 = new IntegerSet (list1);
-		IntegerSet set2 = new IntegerSet (list2);
-		IntegerSet set3 = new IntegerSet (list3);
-		IntegerSet set4 = new IntegerSet (list4);
+		IntegerSet set1 = new IntegerSet(list1);
+		IntegerSet set2 = new IntegerSet(list2);
 		
 		set1.add(12);
+		set1.add(15);
+		set1.add(20);
+		
+		set2.add(3);
+		set2.add(6);
+		set2.add(9);
+		
+		
+		
+		set1.union(set2);
+		
+		//Test 1- set 1 union set 2 is equal to 12,15,20,3,6,9 because these are all the elements in the two sets 
+		assertEquals(set1.toString(), "Set elements: [12, 15, 20, 3, 6, 9]\n");
+		
+		set1.clear();
 		set1.add(5);
-	
 		
-		set2.add(2);
-	
+		set1.union(set2);
 		
-		//Test 1 - union of set 1 and 2 equals [2, 5, 12] because these are all the elements of both sets combined
+		//Test 2 - set 1 has been cleared and only 5 has been added. Therefore, the union is now 5,3,6,9
+		assertEquals(set1.toString(), "Set elements: [5, 3, 6, 9]\n");
 		
-		IntegerSet unionSet = set1.union(set2);
+		set1.clear();
+		set2.clear();
 		
-		assertEquals(unionSet.toString(),  "Set elements: " + unionSet.getlist() + "\n");
+		set1.union(set2);
 		
-		//Test 2 - union of set 2[5,12] and set 3[] equals [5,12]  because set 3 has no elements
-		
-		IntegerSet unionSet2 = set1.union(set3);
-		
-
-		assertEquals(unionSet2.toString(),  "Set elements: " + unionSet2.getlist() + "\n");
-		
-		//Test 3 - union of set 3[] and set 4[] equals []  because both sets are empty 
-		
-		IntegerSet unionSet3 = set3.union(set4);
-		
-		
-		assertEquals(unionSet3.toString(),  "Set elements: " + unionSet3.getlist() + "\n");
+		//Test 3 - both sets have been cleared so the resulting union is an empty set 
+		assertEquals(set1.toString(), "Set elements: []\n");
 	}
 
 	@Test
 	@DisplayName("Test cases for intersect")
 	public void testIntersect() {
-		
 		ArrayList<Integer> list1 = new ArrayList<>();
 		ArrayList<Integer> list2 = new ArrayList<>();
 		
+		
 		IntegerSet set1 = new IntegerSet (list1);
-		IntegerSet set2 = new IntegerSet (list2);
-	
+		IntegerSet set2 = new IntegerSet(list2);
 		
 		
-		set1.add(15);
-		set1.add(20);
+//		
+		set1.add(30);
+		set1.add(50);
+		
+		set2.add(30);
+		set2.add(60);
+		set2.add(90);
+		
+		
+		set1.intersect(set2);
+		
+		//Test 1 - 30 is the only element in the intersection 
 
-		set2.add(3);
-		set2.add(16);
-		set2.add(20);
-		
-		//Test 1 - set intersection is 20 because 20 is the only common number in both sets 
-		
-		IntegerSet intersectSet = set1.intersect(set2);
-		assertEquals(intersectSet.toString(), "Set elements: " + intersectSet.getlist() + "\n");
-		
-		set2.add(15);
-		
-		//Test 2 - set intersection is 15, 20 because these are the numbers common in both sets 
-		IntegerSet intersectSet2 = set1.intersect(set2);
-		assertEquals(intersectSet2.toString(), "Set elements: " + intersectSet2.getlist() + "\n");
+		assertEquals(set1.toString(), "Set elements: [30]\n");
 		
 		
-		//Test 3 - set intersection is 0 because set 2 has been cleared 
-		set2.clear();
-		IntegerSet intersectSet3 = set1.intersect(set2);
-		assertEquals(intersectSet3.toString(), "Set elements: " + intersectSet3.getlist() + "\n");
+		set1.add(60);
+		
+		set2.intersect(set1);
+		
+		//Test 2- since 60 has been added to set 1, set 2 now has 30 and 60 in common with set 1 
+		
+		assertEquals(set2.toString(), "Set elements: [30, 60]\n");
+		
+		set1.clear(); 
+		
+		set1.intersect(set2);
+		
+		//Test 3 - set 1 has been cleared, meaning that when it intersects set 2, the intersection is empty 
+		assertEquals(set1.toString(), "Set elements: []\n");
 		
 	}
 
 	@Test
 	@DisplayName("Test cases for difference")
 	public void testDiff() {
+		
 		ArrayList<Integer> list1 = new ArrayList<>();
 		ArrayList<Integer> list2 = new ArrayList<>();
 		
@@ -366,23 +385,29 @@ public class IntegerSetTest {
 		set2.add(44);
 		set2.add(55);
 		set2.add(22);
-	
+		
+		
+		set1.diff(set2);
 		//Test 1 - the difference equals 33 because 33 is the only number in set 1 that isn't in set 2
-//		
-			IntegerSet diffSet = set1.diff(set2);
-			assertEquals(diffSet.getlist().toString(), "[33]");
+		assertEquals(set1.getlist().toString(), "[33]");
 		
-			
-		//Test 2 - the difference equals 44 because 44 is the only number in set 2 that isn't in set 1 
-//			
-			IntegerSet diffSet2 = set2.diff(set1);
-			assertEquals(diffSet2.getlist().toString(), "[44]");
+		set1.add(66);
+		set1.add(77);
+		set1.add(44);
 		
-		//Test 3 - the difference equals an empty set because there is nothing in set 2 that isn't in set 1 because set 2 has been cleared
 		
-			set2.clear();
-			IntegerSet diffSet3 = set2.diff(set1);
-			assertEquals(diffSet3.getlist().toString(), "[]");
+		set2.diff(set1);
+		
+		//Test 2 - the difference equals 55,22 because 55 and 22 are no longer in set 1 but they are in set 2 
+		assertEquals(set2.getlist().toString(), "[55, 22]");
+		
+		set1.clear();
+		set1.diff(set2);
+		
+		//Test 3  - the difference is now an empty set because set 1 was cleared and there is nothing in set 1 that isn't in set 2
+		assertEquals(set1.getlist().toString(), "[]" );
+		
+		
 	
 	}
 
@@ -413,10 +438,9 @@ public class IntegerSetTest {
 	public void testToString() {
 
 		ArrayList<Integer> list1 = new ArrayList<>();
-		ArrayList<Integer> list2 = new ArrayList<>();
 		
 		IntegerSet set1 = new IntegerSet (list1);
-		IntegerSet set2 = new IntegerSet (list2);
+	
 		
 		set1.add(12);
 		set1.add(5);
@@ -425,13 +449,13 @@ public class IntegerSetTest {
 		
 		//Test 1 - toString returns a string with set 12,5 because those are the elements currently in the set 
 		
-		assertEquals("Set elements: " + set1.getlist() + "\n" ,set1.toString());
+		assertEquals("Set elements: [12, 5]\n" ,set1.toString());
 		
 		set1.clear();
 		
 		//Test 2 - toString returns a string with empty set because set1 has been cleared 
 		
-		assertEquals("Set elements: " + set1.getlist() + "\n" ,set1.toString());
+		assertEquals("Set elements: []\n" ,set1.toString());
 		
 		
 	}

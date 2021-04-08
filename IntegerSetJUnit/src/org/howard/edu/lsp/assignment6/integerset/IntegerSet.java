@@ -215,23 +215,24 @@ public class IntegerSet {
 	 * @param intSetb represents the list we are creating a union with 
 	 * @return returns the union of the set
 	 */
-	public IntegerSet union(IntegerSet intSetb) {
+	public void union(IntegerSet intSetb) {
 		
       	ArrayList<Integer>temp = intSetb.getlist();
 		
-		Set<Integer>set = new HashSet<>();
-	
-
-		set.addAll(list);
-		set.addAll(temp);
+      	list.addAll(temp);
+//		Set<Integer>set = new HashSet<>();
+//	
+//
+//		set.addAll(list);
+//		set.addAll(temp);
 		
-		set.toString();	
 		
-		ArrayList<Integer> list3 = new ArrayList<>(set);
-	
-		IntegerSet list4 = new IntegerSet(list3);
-		
-		return list4;
+//		
+//		ArrayList<Integer> list3 = new ArrayList<>(set);
+//	
+//		IntegerSet list4 = new IntegerSet(list3);
+//		
+//		return list4;
 
 	
 		
@@ -245,21 +246,22 @@ public class IntegerSet {
 	 * @param intSetb represents the list we are looking for an intersection with
 	 * @return returns the intersection of the sets
 	 */
-	public IntegerSet intersect(IntegerSet intSetb) {
-		
+	public void intersect(IntegerSet intSetb) {
+		ArrayList<Integer>tempList  = new ArrayList<>(intSetb.getlist());
 
-
-		ArrayList<Integer>tempList1  = new ArrayList<>( list);
-	
-		ArrayList<Integer> tempList2 = new ArrayList<>(intSetb.getlist());
-		
-		tempList1.retainAll(tempList2);
-		
-	
-		IntegerSet list4 = new IntegerSet(tempList1); 
-		
-		return list4;
-//		System.out.println(list4.toString());
+		list.retainAll(tempList);
+//
+//		ArrayList<Integer>tempList1  = new ArrayList<>( list);
+//	
+//		ArrayList<Integer> tempList2 = new ArrayList<>(intSetb.getlist());
+//		
+//		tempList1.retainAll(tempList2);
+//		
+//	
+//		IntegerSet list4 = new IntegerSet(tempList1); 
+//		
+//		return list4;
+////		System.out.println(list4.toString());
 		
 
 		
@@ -274,26 +276,28 @@ public class IntegerSet {
 	 * @param intSetb represents the list we are looking for a difference between 
 	 * @return returns the difference between two sets 
 	 */
-	public IntegerSet diff(IntegerSet intSetb) {
+	public void diff(IntegerSet intSetb) {
 		
- 
+		ArrayList<Integer> tempList1 = new ArrayList<>(intSetb.getlist());
 		
-		ArrayList<Integer>tempList1  = new ArrayList<>( list);
-	
-		ArrayList <Integer> tempList2 =new ArrayList <>(intSetb.getlist());
-		
-		Set<Integer>set1 = new HashSet<>(tempList1);
-		Set<Integer>set2 = new HashSet<>(tempList2);
-		
-		
-		set1.removeAll(set2);
-		
-
-		ArrayList<Integer> tempList3 = new ArrayList<>(set1);
-		
-		IntegerSet list4 = new IntegerSet(tempList3);
-		
-		return list4;
+		list.removeAll(tempList1);
+//		
+//		ArrayList<Integer>tempList1  = new ArrayList<>( list);
+//	
+//		ArrayList <Integer> tempList2 =new ArrayList <>(intSetb.getlist());
+//		
+//		Set<Integer>set1 = new HashSet<>(tempList1);
+//		Set<Integer>set2 = new HashSet<>(tempList2);
+//		
+//		
+//		set1.removeAll(set2);
+//		
+//
+//		ArrayList<Integer> tempList3 = new ArrayList<>(set1);
+//		
+//		IntegerSet list4 = new IntegerSet(tempList3);
+//		
+//		return list4;
 //		
 //		System.out.println(list4.toString());
 		

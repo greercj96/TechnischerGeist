@@ -16,61 +16,6 @@ import org.junit.jupiter.api.Test;
  *
  */
 class TollboothTest {
-
-	@Test
-	@DisplayName("Test cases for getAxles")
-	public void testGetAxles() {
-		
-		Truck landrover = new LandRover("Land Rover", 5,12000); 
-		Truck volkswagen = new Volkswagen("Volkswagen", 2,5000);
-		
-		//Test 1 - LandRover has 5 axles so this passes as true
-		
-		assertTrue(landrover.getAxles() == 5);
-		
-
-		//Test 2 - volkswagen has 2 axles so this passes as true
-		
-		assertTrue(volkswagen.getAxles() == 2);
-		
-		
-		
-	}
-	
-	@Test
-	@DisplayName("Test cases for getTotalWeight")
-	public void testGetTotalWeight() {
-	
-		Truck landrover = new LandRover("Land Rover", 5,12000); 
-		
-		Truck volkswagen = new Volkswagen("Volkswagen", 2,5000);
-		
-		
-		//Test 1 - landrover is 12000kg  so this passes as true
-		assertTrue(landrover.getTotalWeight() == 12000);
-
-		//Test 1 - volkswagen is 5000kg  so this passes as true
-		assertTrue(volkswagen.getTotalWeight() == 5000);
-		
-	}
-
-	
-	@Test
-	@DisplayName("Test cases for getMake")
-	public void testGettMake() {
-		
-		Truck landrover = new LandRover("Land Rover", 5,12000); 
-		Truck volkswagen = new Volkswagen("Volkswagen", 2,5000);
-		
-		
-		//Test 1 - landrover make is "Land Rover" so this passes as true
-		assertTrue(landrover.getMake() == "Land Rover");
-		
-		//Test 1 - volkswagen make is "Volkswagen" so this passes as true 
-		assertTrue(volkswagen.getMake() == "Volkswagen");
-	}
-	
-	
 	
 	
 	@Test 

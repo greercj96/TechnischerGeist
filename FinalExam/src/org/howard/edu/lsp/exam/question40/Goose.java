@@ -9,6 +9,9 @@ package org.howard.edu.lsp.exam.question40;
  */
  class Goose extends Animal implements Flying{
 		
+		/**
+		 * constructor
+		 */
 		public Goose() {
 			super("goose");
 		}

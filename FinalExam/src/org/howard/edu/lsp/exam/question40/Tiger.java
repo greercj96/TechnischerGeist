@@ -9,6 +9,9 @@ package org.howard.edu.lsp.exam.question40;
  */
 public class Tiger extends Animal {
 	
+	/**
+	 * constructor
+	 */
 	public Tiger() {
 		super ("tiger");
 	}

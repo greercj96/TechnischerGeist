@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.howard.edu.exam.question42;
+package org.howard.edu.lsp.exam.question42;
 
 import java.util.HashMap;
 import java.util.HashSet;
